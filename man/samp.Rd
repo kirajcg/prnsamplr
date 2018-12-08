@@ -2,7 +2,7 @@
 \alias{samp}
 \title{PRN Sampling}
 \usage{
-samp(metod, df, ...)
+samp(method, df, ...)
 }
 \description{
 Wrapper for PPS and SRS sampling.
@@ -17,7 +17,4 @@ Input:
 Output:
   Copy of the input data frame together with the boolean variable sampled,
   as well as the numeric variable lambda for PPS case.
-}
-\examples{
-samp(pps, myDF, nsamp="N"", prn="prns", size="Xi", stratid="strat")
 }
