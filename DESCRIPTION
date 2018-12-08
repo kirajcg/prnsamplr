@@ -2,10 +2,11 @@ Package: prnsamplr
 Type: Package
 Title: Permanent random number sampling
 Version: 0.1.0
+Date: 2018-12-08
 Author: Kira Coder Gylling
 Maintainer: Kira Coder Gylling <kira.gylling@gmail.com>
-Description: Simple random sampling and PPS sampling
-    with permanent random numbers. 
+Description: Simple random sampling and PPS sampling with permanent random numbers. 
 License: MIT
-Encoding: UTF-8
-LazyData: true
+Imports: Rcpp (>= 0.12.18)
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.1.0
