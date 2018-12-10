@@ -58,8 +58,6 @@ Rcpp::DataFrame srs_cpp(Rcpp::DataFrame df,
     }
   }
   
-  Rcpp::DataFrame out;
-  out["id"] = id_sorted_st;
   df["sampled"] = sampled;
   return df;
 }
