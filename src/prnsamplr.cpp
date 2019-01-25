@@ -5,6 +5,16 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 
 // First draft
+
+// [Rcpp::export]
+Rcpp::DataFrame transform_cpp(Rcpp::DataFrame df,
+                              arma::vec prn,
+                              char direction,
+                              double start) {
+  // goes nowhere, does nothing
+  return 0;
+}
+
 // [[Rcpp::export]]
 Rcpp::DataFrame pps_cpp(Rcpp::DataFrame df,
                         arma::vec stratid,
