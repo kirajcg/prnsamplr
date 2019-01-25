@@ -6,6 +6,18 @@
 
 // First draft
 // [[Rcpp::export]]
+Rcpp::DataFrame pps_cpp(Rcpp::DataFrame df,
+                        arma::vec stratid,
+                        arma::vec nsamp,
+                        arma::vec prn,
+                        arma::vec size,
+                        arma::vec id){
+  // goes nowhere, does nothing
+  return 0;
+}
+
+
+// [[Rcpp::export]]
 Rcpp::DataFrame srs_cpp(Rcpp::DataFrame df,
                         arma::vec stratid,
                         arma::vec nsamp,
