@@ -56,9 +56,9 @@ Rcpp::DataFrame srs_cpp(const Rcpp::DataFrame& dfin,
   for (uword i = 0; i < ntot; i++) {
     /*
     for (uword j = 0; j < ntot; j++) {
-      if (id[i] == id_sorted_st[j]) {
-        sampled[i] = sampled_sorted[j];
-      }
+    if (id[i] == id_sorted_st[j]) {
+    sampled[i] = sampled_sorted[j];
+    }
     }
     */
     
@@ -67,7 +67,7 @@ Rcpp::DataFrame srs_cpp(const Rcpp::DataFrame& dfin,
   
   dfout["sampled"] = sampled;
   return Rcpp::DataFrame(dfout);
-}
+  }
 
 // [Rcpp::export]
 Rcpp::DataFrame transform_cpp(Rcpp::DataFrame df,
@@ -88,7 +88,7 @@ Rcpp::DataFrame pps_cpp_loop(const Rcpp::DataFrame& dfin,
   
   Rcpp::DataFrame dfout = dfin;
   
-    
+  
   uword ntot = id.size();
   vec stratid_num;
   vec strat;
@@ -155,11 +155,11 @@ Rcpp::DataFrame pps_cpp_loop(const Rcpp::DataFrame& dfin,
   for (uword i=0; i<ntot; i++) {
     /*
     for (uword j=0; j<ntot; j++) {
-      if (stratid_num[i] == stratid_num[j]) {
-        sum_size[i] += size[j];
-      }
+    if (stratid_num[i] == stratid_num[j]) {
+    sum_size[i] += size[j];
     }
-     */
+    }
+    */
     
     sum_size[i] = sum(size.elem(find(stratid == stratid[i])));
     
@@ -170,10 +170,10 @@ Rcpp::DataFrame pps_cpp_loop(const Rcpp::DataFrame& dfin,
   
   /*
   for (uword i=0; i<ntot; i++) {
-    lambda[i] = nsamp[i] * size[i] / sum_size[i];
+  lambda[i] = nsamp[i] * size[i] / sum_size[i];
   }
   */
-   
+  
   lambda = nsamp % size / sum_size;
   vec lambda_ltone;
   
@@ -187,7 +187,7 @@ Rcpp::DataFrame pps_cpp_loop(const Rcpp::DataFrame& dfin,
   do {
     find_gtone = find(lambda >= 1);
     find_ltone = find(lambda < 1);
-  
+    
     stratid_gtone = stratid.elem(find_gtone);
     nsamp_gtone = nsamp.elem(find_gtone);
     prn_gtone = prn.elem(find_gtone);
@@ -233,7 +233,7 @@ Rcpp::DataFrame pps_cpp_loop(const Rcpp::DataFrame& dfin,
                                                    Rcpp::Named("nsamp") = nsamp_ltone,
                                                    Rcpp::Named("Q") = Q_ltone,
                                                    Rcpp::Named("id") = id_ltone);
-   
+  
   Rcpp::DataFrame df_out = srs_cpp(df_srs,
                                    stratid_ltone,
                                    nsamp_ltone,
@@ -266,7 +266,7 @@ Rcpp::DataFrame pps_cpp_loop(const Rcpp::DataFrame& dfin,
   dfout["sampled"] = sampled_out;
   
   return Rcpp::DataFrame(dfout);
-}
+  }
 
 
 
@@ -344,7 +344,7 @@ Rcpp::DataFrame pps_cpp_rec(const Rcpp::DataFrame& dfin,
   for (uword i=0; i<ntot; i++) {
     sum_size[i] = sum(size.elem(find(stratid == stratid[i])));
   }
-    
+  
   
   lambda = nsamp % size / sum_size;
   
@@ -412,7 +412,7 @@ Rcpp::DataFrame pps_cpp_rec(const Rcpp::DataFrame& dfin,
     dfout["sampled"] = sampled_out;
     
     return dfout;
-    }
+  }
   
   else {
     Q = prn % (1 - lambda) / (lambda % (1 - prn));
