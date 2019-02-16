@@ -1,20 +1,28 @@
 \name{samp}
 \alias{samp}
 \title{PRN Sampling}
+
+\description{
+  Wrapper for PPS and SRS sampling using permanent random numbers.
+}
+
 \usage{
 samp(method, df, ...)
 }
-\description{
-Wrapper for PPS and SRS sampling.
 
-Input:
-  method: pps or srs.
-  df: Data frame containing the elements to sample from.
-  nsamp: Column containing sample sizes.
-  stratid: Column containing stratum information.
-  size: Size measure, in the PPS case.
+\arguments{
+  \item{method}{pps or srs}
+  \item{df}{Data frame containing the elements to sample from.}
+  \item{...}{Further method-specific arguments.}
+}
 
-Output:
+\value{
   Copy of the input data frame together with the boolean variable sampled,
   as well as the numeric variable lambda for PPS case.
+}
+
+\examples{
+  samp(method=pps, df=myDataFrame, )
+  samp(method=pps, df=myDataFrame, nsamp="nsamp", stratid="nace", size="turn", prn="prn")
+  samp(method=srs, df=myDataFrame, nsamp="nsamp", stratid="nace", prn="prn")
 }
