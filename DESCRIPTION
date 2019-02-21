@@ -2,7 +2,7 @@ Package: prnsamplr
 Type: Package
 Title: Permanent random number sampling
 Version: 0.1.0
-Date: 2018-12-08
+Date: 2019-02-21
 Author: Kira Coder Gylling
 Maintainer: Kira Coder Gylling <kira.gylling@gmail.com>
 Description: Stratified simple random sampling and stratified probability-proportional-to-size sampling using permanent random numbers. 
