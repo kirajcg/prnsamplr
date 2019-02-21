@@ -5,8 +5,9 @@ Version: 0.1.0
 Date: 2018-12-08
 Author: Kira Coder Gylling
 Maintainer: Kira Coder Gylling <kira.gylling@gmail.com>
-Description: Simple random sampling and PPS sampling with permanent random numbers. 
+Description: Stratified simple random sampling and stratified probability-proportional-to-size sampling using permanent random numbers. 
 License: file LICENSE
 Encoding: UTF-8
 RoxygenNote: 6.1.0
 Imports: stats
+LazyData: true

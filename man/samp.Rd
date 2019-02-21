@@ -1,9 +1,9 @@
 \name{samp}
 \alias{samp}
-\title{PRN Sampling}
+\title{Stratified permanent random number sampling}
 
 \description{
-  Wrapper for PPS and SRS sampling using permanent random numbers.
+  Wrapper for stratified simple random sampling (SRS) and probability-proportional-to-size (PPS) sampling using permanent random numbers. Can also be used for non-stratified sampling using a dummy stratum taking the same value for each object.
 }
 
 \usage{
@@ -11,18 +11,22 @@ samp(method, df, ...)
 }
 
 \arguments{
-  \item{method}{pps or srs}
+  \item{method}{\code{pps} or \code{srs}.}
   \item{df}{Data frame containing the elements to sample from.}
   \item{...}{Further method-specific arguments.}
 }
 
 \value{
-  Copy of the input data frame together with the boolean variable sampled,
-  as well as the numeric variable lambda for PPS case.
+  Copy of the input data frame together with the boolean variable \code{sampled}, as well as a numeric variable \code{lambda} containing the estimated first-order inclusion probabilities when PPS is used.
 }
 
 \examples{
-  samp(method=pps, df=myDataFrame, )
-  samp(method=pps, df=myDataFrame, nsamp="nsamp", stratid="nace", size="turn", prn="prn")
-  samp(method=srs, df=myDataFrame, nsamp="nsamp", stratid="nace", prn="prn")
+samp(method=pps, df=ExampleData, nsamp="nsamp", stratid="nace", prn="prn", size="turn")
+samp(method=srs, df=ExampleData, nsamp="nsamp", stratid="nace", prn="prn")
+}
+
+\seealso{
+  \code{\link{srs}},
+  \code{\link{pps}},
+  \code{\link{transformprn}}.
 }

@@ -17,7 +17,6 @@ pps <- function(df, stratid, nsamp, prn, size) {
     ltone <- pps(subset(df, df$lambda < 1), stratid, "nnew", prn, size)
     ltone["nnew"] <- NULL
     dfout <- rbind(gtone, ltone)
-    #dfout["nnew"] <- NULL
     return(dfout)
   }
 
