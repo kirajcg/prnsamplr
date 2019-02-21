@@ -22,7 +22,7 @@ srs(df, stratid, nsamp, prn)
 }
 
 \examples{
-srs(df=ExampleData, nsamp="nsamp", stratid="nace", prn="prn")
+srs(df=ExampleData, nsamp="nsamp", stratid="stratum", prn="prn")
 }
 
 \seealso{

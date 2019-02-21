@@ -23,7 +23,7 @@ pps(df, stratid, nsamp, prn, size)
 }
 
 \examples{
-pps(df=ExampleData, nsamp="nsamp", stratid="nace", prn="prn", size="turn")
+pps(df=ExampleData, nsamp="nsamp", stratid="stratum", prn="prn", size="size")
 }
 
 \seealso{

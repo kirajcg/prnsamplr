@@ -21,8 +21,8 @@ samp(method, df, ...)
 }
 
 \examples{
-samp(method=pps, df=ExampleData, nsamp="nsamp", stratid="nace", prn="prn", size="turn")
-samp(method=srs, df=ExampleData, nsamp="nsamp", stratid="nace", prn="prn")
+samp(method=pps, df=ExampleData, nsamp="nsamp", stratid="stratum", prn="prn", size="size")
+samp(method=srs, df=ExampleData, nsamp="nsamp", stratid="stratum", prn="prn")
 }
 
 \seealso{
