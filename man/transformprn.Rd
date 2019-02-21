@@ -31,4 +31,4 @@ transformprn(df=ExampleData, prn="prn", direction="U", start=0.2)
   \code{\link{pps}}.
 }
 
-\references{Lindblom, A. and Teterukovsky, A. (2007) \emph{Coordination of Stratified Pareto πps Samples and Stratified Simple Random Samples at Statistics Sweden}.}
+\references{Lindblom, A. and Teterukovsky, A. (2007) \emph{Coordination of Stratified Pareto pps Samples and Stratified Simple Random Samples at Statistics Sweden}.}
