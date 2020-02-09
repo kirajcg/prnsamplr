@@ -19,3 +19,7 @@ library(prnsamplr)
 
 SampledData <- samp(method=pps, df=ExampleData, nsamp="nsample", stratid="stratum", prn="rands", size="sizeM")
 ```
+
+## News
+
+In version 0.1.1 an issue was fixed that disallowed generic function parameters. 
