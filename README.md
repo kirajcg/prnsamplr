@@ -17,5 +17,5 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(prnsamplr)
 
-SampledData <- samp(method=pps, df=ExampleData, nsamp="nsamp", stratid="stratum", prn="prn", size="size")
+SampledData <- samp(method=pps, df=ExampleData, nsamp="nsample", stratid="stratum", prn="rands", size="sizeM")
 ```
