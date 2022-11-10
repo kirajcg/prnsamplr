@@ -39,7 +39,9 @@ transformprn <- function(df, prn, direction, start) {
   }
   # and not at all in any other case
   else {
-    message(direction, ' is not a valid direction, calculating nothing')
+    warning('"', direction, 
+            '" is not a valid direction. ',
+            'Please specify either "U" or "R" for up, or either "D or "L" for down.')
   }
   return(df)
 }
