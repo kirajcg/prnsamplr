@@ -31,7 +31,9 @@ dfOut <- pps(df=ExampleData,
 }
 
 \seealso{
+  \code{\link{prnsamplr}},
   \code{\link{samp}},
   \code{\link{srs}},
-  \code{\link{transformprn}}.
+  \code{\link{transformprn}},
+  \code{\link{ExampleData}}.
 }
