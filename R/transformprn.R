@@ -27,10 +27,10 @@ transformprn <- function(df, prn, direction, start) {
 
   # start point needs to be between 0 and 1
   if (start < 0) {
-    stop('start point cannot be less than 0')
+    stop("start point cannot be less than 0")
   }
   if (start > 1) {
-    stop('start point cannot be greater than 1')
+    stop("start point cannot be greater than 1")
   }
 
   # save the original prn's
@@ -45,9 +45,11 @@ transformprn <- function(df, prn, direction, start) {
   }
   # and not at all in any other case
   else {
-    warning('"', direction,
-            '" is not a valid direction. ',
-            'Please specify either "U" or "R" for up, or either "D or "L" for down.')
+    warning(
+      '"', direction,
+      '" is not a valid direction. ',
+      'Please specify either "U" or "R" for up, or either "D or "L" for down.'
+    )
   }
   return(df)
 }

@@ -1,8 +1,12 @@
+#'
+#'
 #' @param df
 #'
 #' @param stratid
 #' @param nsamp
 #' @param prn
+#'
+#' @return
 #'
 #' @export
 srs <- function(df, stratid, nsamp, prn) {
@@ -33,38 +37,45 @@ srs <- function(df, stratid, nsamp, prn) {
 
   # nsamp and prn numeric variables
   if (mode(df[, nsamp]) != "numeric") {
-    stop('sample size variable ', nsamp, ' is not numeric')
+    stop("sample size variable ", nsamp, " is not numeric")
   }
   if (mode(df[, prn]) != "numeric") {
-    stop('PRN variable ', prn, ' is not numeric')
+    stop("PRN variable ", prn, " is not numeric")
   }
 
   # Only one nsamp for each stratid
-  StratInfo <- unique(df[, c(stratid, nsamp)])
-  n_strat_nsamp <- data.frame(table(StratInfo[, stratid]))
-  non_unique_nsamp <- n_strat_nsamp[n_strat_nsamp$Freq > 1,]
+  strat_info <- unique(df[, c(stratid, nsamp)])
+  n_strat_nsamp <- data.frame(table(strat_info[, stratid]))
+  non_unique_nsamp <- n_strat_nsamp[n_strat_nsamp$Freq > 1, ]
   if (nrow(non_unique_nsamp) > 0) {
     problematic_strata <- non_unique_nsamp$Var1
-    warning(stratid, ' with names ', paste(problematic_strata, collapse=', '),
-            ' have more than one corresponding value of ', nsamp)
+    warning(
+      stratid, " with names ", paste(problematic_strata, collapse = ", "),
+      " have more than one corresponding value of ", nsamp
+    )
   }
 
   # Each prn between 0 and 1
-  prn_below_zero <- df[df[, prn] < 0,]
+  prn_below_zero <- df[df[, prn] < 0, ]
   if (nrow(prn_below_zero) > 0) {
-    warning(prn, ' less than 0 found at rows ',
-            paste(row.names(prn_below_zero), collapse=', '))
+    warning(
+      prn, " less than 0 found at rows ",
+      paste(row.names(prn_below_zero), collapse = ", ")
+    )
   }
-  prn_above_one <- df[df[, prn] > 1,]
+  prn_above_one <- df[df[, prn] > 1, ]
   if (nrow(prn_above_one) > 0) {
-    warning(prn, ' greater than 1 found at rows ',
-            paste(row.names(prn_above_one), collapse=', '))
+    warning(
+      prn, " greater than 1 found at rows ",
+      paste(row.names(prn_above_one), collapse = ", ")
+    )
   }
 
   # sort the frame along stratum and PRN's
-  orderdf <- unname(df[,c(stratid, prn)])
+  orderdf <- unname(df[, c(stratid, prn)])
   df <- df[do.call(order, orderdf), ]
   # the nsamp first objects in each stratum are marked for sampling
-  df$sampled <- sequence(rle(as.character(df[, stratid]))$lengths) <= df[, nsamp]
+  df$sampled <- sequence(rle(as.character(df[, stratid]))$lengths) <=
+    df[, nsamp]
   return(df)
 }

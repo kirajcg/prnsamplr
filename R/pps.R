@@ -41,35 +41,41 @@ pps <- function(df, stratid, nsamp, prn, size) {
 
   # nsamp, prn, and size numeric variables
   if (mode(df[, nsamp]) != "numeric") {
-    stop('sample size variable ', nsamp, ' is not numeric')
+    stop("sample size variable ", nsamp, " is not numeric")
   }
   if (mode(df[, prn]) != "numeric") {
-    stop('PRN variable ', prn, ' is not numeric')
+    stop("PRN variable ", prn, " is not numeric")
   }
   if (mode(df[, size]) != "numeric") {
-    stop('size variable ', size, ' is not numeric')
+    stop("size variable ", size, " is not numeric")
   }
 
   # Only one nsamp for each stratid
   StratInfo <- unique(df[, c(stratid, nsamp)])
   n_strat_nsamp <- data.frame(table(StratInfo[, stratid]))
-  non_unique_nsamp <- n_strat_nsamp[n_strat_nsamp$Freq > 1,]
+  non_unique_nsamp <- n_strat_nsamp[n_strat_nsamp$Freq > 1, ]
   if (nrow(non_unique_nsamp) > 0) {
     problematic_strata <- non_unique_nsamp$Var1
-    warning(stratid, ' with names ', paste(problematic_strata, collapse=', '),
-            ' have more than one corresponding value of ', nsamp)
+    warning(
+      stratid, " with names ", paste(problematic_strata, collapse = ", "),
+      " have more than one corresponding value of ", nsamp
+    )
   }
 
   # Each prn between 0 and 1
-  prn_below_zero <- df[df[, prn] < 0,]
+  prn_below_zero <- df[df[, prn] < 0, ]
   if (nrow(prn_below_zero) > 0) {
-    warning(prn, ' less than 0 found at rows ',
-            paste(row.names(prn_below_zero), collapse=', '))
+    warning(
+      prn, " less than 0 found at rows ",
+      paste(row.names(prn_below_zero), collapse = ", ")
+    )
   }
-  prn_above_one <- df[df[, prn] > 1,]
+  prn_above_one <- df[df[, prn] > 1, ]
   if (nrow(prn_above_one) > 0) {
-    warning(prn, ' greater than 1 found at rows ',
-            paste(row.names(prn_above_one), collapse=', '))
+    warning(
+      prn, " greater than 1 found at rows ",
+      paste(row.names(prn_above_one), collapse = ", ")
+    )
   }
 
   # calculate the sum of the size in each stratum
@@ -100,12 +106,12 @@ pps <- function(df, stratid, nsamp, prn, size) {
     ltone["nnew"] <- NULL
     dfout <- rbind(gtone, ltone)
     return(dfout)
-  # if no lambda >= 1
+    # if no lambda >= 1
   } else {
     # calculate Q and sort along it for each stratum
     df["Q"] <- df[prn] * (1 - df["lambda"]) / (df["lambda"] * (1 - df[prn]))
-    orderdf <- unname(df[,c(stratid, "Q")])
-    df <- df[do.call(order, orderdf),]
+    orderdf <- unname(df[, c(stratid, "Q")])
+    df <- df[do.call(order, orderdf), ]
     # the nsamp with lowest Q for each stratum are marked for sampling
     df$sampled <- sequence(rle(as.character(df[, stratid]))$lengths) <= df[nsamp]
     # remove the sum of the sizes and return the frame

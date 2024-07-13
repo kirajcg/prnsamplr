@@ -15,8 +15,8 @@ samp <- function(method, df, ...) {
 
   # Check if a valid method is used
   method_str <- deparse(substitute(method))
-  if (!(method_str %in% c('srs', 'pps'))) {
-    stop('invalid method ', method_str)
+  if (!(method_str %in% c("srs", "pps"))) {
+    stop("invalid method ", method_str)
   }
 
   # run the specified method function using provided parameters
