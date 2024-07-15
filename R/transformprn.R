@@ -25,14 +25,14 @@ transformprn <- function(frame, prn, direction, start) {
   }
 
   # save the original prn's
-  frame["prn.old"] <- frame[prn]
+  frame[["prn.old"]] <- frame[[prn]]
   # transform the prn's according to one operation if counting should go up,
   # another if counting should go down
   # and not at all in any other case
   if (toupper(substr(direction, 1, 1)) %in% c("U", "R")) {
-    frame[prn] <- (frame["prn.old"] - start + 1) %% 1
+    frame[[prn]] <- (frame[["prn.old"]] - start + 1) %% 1
   } else if (toupper(substr(direction, 1, 1)) %in% c("D", "L")) {
-    frame[prn] <- 1 - ((frame["prn.old"] - start + 1) %% 1)
+    frame[[prn]] <- 1 - ((frame[["prn.old"]] - start + 1) %% 1)
   } else {
     warning(
       '"', direction,

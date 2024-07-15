@@ -79,19 +79,19 @@ pps <- function(frame, stratid, nsamp, prn, size) {
                         c(stratid, "sumsize"))
   frame <- merge(frame, sum_frame, by = stratid)
   # calculate a preliminary lambda for each item
-  frame["lambda"] <- frame[nsamp] * frame[size] / frame["sumsize"]
+  frame[["lambda"]] <- frame[[nsamp]] * frame[[size]] / frame[["sumsize"]]
 
   # if any lambda >= 1:
-  if (any(frame["lambda"] >= 1)) {
+  if (any(frame[["lambda"]] >= 1)) {
     # calculate new sample size among units with lambda < 1
     n_frame <- aggregate(list(ntot = frame["lambda"] >= 1),
                          frame[stratid], sum)
-    frame["nnew"] <- frame[nsamp] - merge(frame,
-                                          n_frame,
-                                          by = stratid)["lambda.y"]
+    frame[["nnew"]] <- frame[[nsamp]] - merge(frame,
+                                              n_frame,
+                                              by = stratid)[["lambda.y"]]
     # remove the variable with sum of size
     if ("sumsize" %in% colnames(frame)) {
-      frame["sumsize"] <- NULL
+      frame[["sumsize"]] <- NULL
     }
     # extract units with lambda >= 1, set their lambda to 1
     # and mark them for sampling
@@ -100,26 +100,26 @@ pps <- function(frame, stratid, nsamp, prn, size) {
     gtone$Q <- rep(0, nrow(gtone))
     gtone$sampled <- rep(TRUE, nrow(gtone))
     # remove the variable with new sample size from the {lambda >= 1} subset
-    gtone["nnew"] <- NULL
+    gtone[["nnew"]] <- NULL
     # run the entire function on the {lambda < 1} subset
     # with the new sample sizes
     ltone <- pps(subset(frame, frame$lambda < 1), stratid, ~nnew, prn, size)
     # remove the new sample sizes and return a concatenation of the subsets
-    ltone["nnew"] <- NULL
+    ltone[["nnew"]] <- NULL
     out_frame <- rbind(gtone, ltone)
     return(out_frame)
     # if no lambda >= 1
   } else {
     # calculate Q and sort along it for each stratum
-    frame["Q"] <- frame[prn] * (1 - frame["lambda"]) /
-      (frame["lambda"] * (1 - frame[prn]))
+    frame[["Q"]] <- frame[[prn]] * (1 - frame[["lambda"]]) /
+      (frame[["lambda"]] * (1 - frame[[prn]]))
     order_frame <- unname(frame[, c(stratid, "Q")])
     frame <- frame[do.call(order, order_frame), ]
     # the nsamp with lowest Q for each stratum are marked for sampling
     frame$sampled <- sequence(rle(as.character(frame[, stratid]))$lengths) <=
       frame[nsamp]
     # remove the sum of the sizes and return the frame
-    frame["sumsize"] <- NULL
+    frame[["sumsize"]] <- NULL
     return(frame)
   }
 }
