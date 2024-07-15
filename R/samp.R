@@ -1,18 +1,10 @@
 #' @param method
 #'
-#' @param df
+#' @param frame
 #' @param ...
 #'
 #' @export
-samp <- function(method, df, ...) {
-  # Check if any argument is missing
-  if (missing(method)) {
-    stop('argument "method" is missing, with no default')
-  }
-  if (missing(df)) {
-    stop('argument "df" is missing, with no default')
-  }
-
+samp <- function(method, frame, ...) {
   # Check if a valid method is used
   method_str <- deparse(substitute(method))
   if (!(method_str %in% c("srs", "pps"))) {
@@ -20,5 +12,5 @@ samp <- function(method, df, ...) {
   }
 
   # run the specified method function using provided parameters
-  do.call(method, list(df, ...))
+  do.call(method, list(frame, ...))
 }

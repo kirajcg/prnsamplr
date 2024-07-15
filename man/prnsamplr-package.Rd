@@ -17,21 +17,27 @@ Provided is also a function \code{transformprn} via which it is possible to sele
 Finally, an example dataset is provided that can be used to illustrate the functionality of the package.
 }
 \examples{
-dfSRS <- srs(df=ExampleData,
-         nsamp="nsample",
-         stratid="stratum",
-         prn="rands")
+dfSRS <- srs(
+  df = ExampleData,
+  nsamp = ~nsample,
+  stratid = ~stratum,
+  prn = ~rands
+)
 
-dfPPS <- pps(df=ExampleData,
-             nsamp="nsample",
-             stratid="stratum",
-             prn="rands",
-             size="sizeM")
+dfPPS <- pps(
+  df = ExampleData,
+  nsamp = ~nsample,
+  stratid = ~stratum,
+  prn = ~rands,
+  size = ~sizeM
+)
 
-dfPRN <- transformprn(df=ExampleData,
-                     prn="rands",
-                     direction="U",
-                     start=0.2)
+dfPRN <- transformprn(
+  df = ExampleData,
+  prn = ~rands,
+  direction = "U",
+  start = 0.2
+)
 }
 \references{
 Lindblom, A. (2014). "On Precision in Estimates of Change over Time where Samples are Positively Coordinated by Permanent Random Numbers." \emph{Journal of Official Statistics}, vol.30, no.4, 2014, pp.773-785. https://doi.org/10.2478/jos-2014-0047.

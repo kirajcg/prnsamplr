@@ -20,25 +20,26 @@
 #' @examples
 #' dfSRS <- srs(
 #'   df = ExampleData,
-#'   nsamp = "nsample",
-#'   stratid = "stratum",
-#'   prn = "rands"
+#'   nsamp = ~nsample,
+#'   stratid = ~stratum,
+#'   prn = ~rands
 #' )
 #'
 #' dfPPS <- pps(
 #'   df = ExampleData,
-#'   nsamp = "nsample",
-#'   stratid = "stratum",
-#'   prn = "rands",
-#'   size = "sizeM"
+#'   nsamp = ~nsample,
+#'   stratid = ~stratum,
+#'   prn = ~rands,
+#'   size = ~sizeM
 #' )
 #'
 #' dfPRN <- transformprn(
 #'   df = ExampleData,
-#'   prn = "rands",
+#'   prn = ~rands,
 #'   direction = "U",
 #'   start = 0.2
 #' )
 ## usethis namespace: start
+#' @importFrom stats aggregate setNames
 ## usethis namespace: end
 "_PACKAGE"
