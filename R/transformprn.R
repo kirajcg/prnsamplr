@@ -34,7 +34,7 @@ transformprn <- function(frame, prn, direction, start) {
   } else if (toupper(substr(direction, 1, 1)) %in% c("D", "L")) {
     frame[[prn]] <- 1 - ((frame[["prn.old"]] - start + 1) %% 1)
   } else {
-    warning(
+    stop(
       '"', direction,
       '" is not a valid direction. ',
       'Please specify either "U" or "R" for up, or either "D or "L" for down.'

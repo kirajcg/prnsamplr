@@ -114,12 +114,12 @@ pps <- function(frame, stratid, nsamp, prn, size) {
     frame[["Q"]] <- frame[[prn]] * (1 - frame[["lambda"]]) /
       (frame[["lambda"]] * (1 - frame[[prn]]))
     order_frame <- unname(frame[, c(stratid, "Q")])
-    frame <- frame[do.call(order, order_frame), ]
+    out_frame <- frame[do.call(order, order_frame), ]
     # the nsamp with lowest Q for each stratum are marked for sampling
-    frame$sampled <- sequence(rle(as.character(frame[, stratid]))$lengths) <=
-      frame[nsamp]
+    out_frame$sampled <- sequence(rle(as.character(frame[, stratid]))$lengths) <=
+      out_frame[nsamp]
     # remove the sum of the sizes and return the frame
-    frame[["sumsize"]] <- NULL
-    return(frame)
+    out_frame[["sumsize"]] <- NULL
+    return(out_frame)
   }
 }

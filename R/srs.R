@@ -70,9 +70,10 @@ srs <- function(frame, stratid, nsamp, prn) {
 
   # sort the frame along stratum and PRN's
   order_frame <- unname(frame[, c(stratid, prn)])
-  frame <- frame[do.call(order, order_frame), ]
+  out_frame <- frame[do.call(order, order_frame), ]
   # the nsamp first objects in each stratum are marked for sampling
-  frame$sampled <- sequence(rle(as.character(frame[, stratid]))$lengths) <=
-    frame[, nsamp]
-  return(frame)
+  out_frame$sampled <- sequence(rle(as.character(frame[, stratid]))$lengths) <=
+    out_frame[, nsamp]
+
+  return(out_frame)
 }
