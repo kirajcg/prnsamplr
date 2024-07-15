@@ -1,10 +1,10 @@
-makeData <- function(nobs, nstrat, seed) {
+make_data <- function(nobs, nstrat, seed) {
   set.seed(seed)
-  stratlen <- c(1, sort(floor(runif(nstrat, 1, nobs))), nobs)
-  DataNew <- data.frame(id = 1:nobs)
+  strat_len <- c(1, sort(floor(runif(nstrat, 1, nobs))), nobs)
+  data_new <- data.frame(id = 1:nobs)
 
   for (i in 1:nstrat + 1) {
-    DataNew[stratlen[i]:stratlen[i + 1], "stratum"] <- paste("st",
+    data_new[strat_len[i]:strat_len[i + 1], "stratum"] <- paste("st",
       stringr::str_pad(toString(i), 5,
         side = "left",
         pad = "0"
@@ -13,17 +13,17 @@ makeData <- function(nobs, nstrat, seed) {
     )
   }
 
-  DataNew[1:stratlen[2] - 1, "stratum"] <- "st00001"
-  StratInfo <- as.data.frame(table(DataNew$stratum))
-  colnames(StratInfo) <- c("stratum", "npopul")
-  StratInfo$nsample <- ceiling(runif(nrow(StratInfo)) * StratInfo$npop)
+  data_new[1:stratlen[2] - 1, "stratum"] <- "st00001"
+  strat_info <- as.data.frame(table(data_new$stratum))
+  colnames(strat_info) <- c("stratum", "npopul")
+  strat_info$nsample <- ceiling(runif(nrow(strat_info)) * strat_info$npop)
 
-  outData <- merge(DataNew, StratInfo, by = "stratum")
-  outData$rands <- runif(nrow(outData))
-  outData$sizeM <- 10 * runif(nrow(outData))
-  return(outData)
+  out_data <- merge(data_new, strat_info, by = "stratum")
+  out_data$rands <- runif(nrow(out_data))
+  out_data$sizeM <- 10 * runif(nrow(out_data))
+  return(out_data)
 }
 
-ExampleData <- makeData(40000, 99, 1)
+ExampleData <- make_data(40000, 99, 1)
 
 usethis::use_data(ExampleData, overwrite = TRUE)
