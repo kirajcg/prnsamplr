@@ -1,12 +1,32 @@
-#' @param frame
+#' Title
 #'
+#' @param frame
 #' @param stratid
 #' @param nsamp
 #' @param prn
 #' @param size
 #'
+#' @return
 #' @export
+#'
+#' @examples
 pps <- function(frame, stratid, nsamp, prn, size) {
+  UseMethod("pps")
+}
+
+#' Title
+#'
+#' @param frame
+#' @param stratid
+#' @param nsamp
+#' @param prn
+#' @param size
+#'
+#' @return
+#' @export
+#'
+#' @examples
+pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
   # start by casting arguments as strings
   if (typeof(stratid) == "language") {
     stratid <- rlang::f_name(stratid)
@@ -122,4 +142,42 @@ pps <- function(frame, stratid, nsamp, prn, size) {
     out_frame[["sumsize"]] <- NULL
     return(out_frame)
   }
+}
+
+#' Title
+#'
+#' @param frame
+#' @param stratid
+#' @param nsamp
+#' @param prn
+#' @param size
+#'
+#' @return
+#' @export
+#'
+#' @examples
+pps.data.table <- function(frame, stratid, nsamp, prn, size) {
+  return(frame |>
+           as.data.frame() |>
+           pps(stratid, nsamp, prn, size) |>
+           data.table::as.data.table())
+}
+
+#' Title
+#'
+#' @param frame
+#' @param stratid
+#' @param nsamp
+#' @param prn
+#' @param size
+#'
+#' @return
+#' @export
+#'
+#' @examples
+pps.tbl_df <- function(frame, stratid, nsamp, prn, size) {
+  return(frame |>
+           as.data.frame() |>
+           pps(stratid, nsamp, prn, size) |>
+           tibble::as_tibble())
 }
