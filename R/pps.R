@@ -14,18 +14,7 @@ pps <- function(frame, stratid, nsamp, prn, size) {
   UseMethod("pps")
 }
 
-#' Title
-#'
-#' @param frame
-#' @param stratid
-#' @param nsamp
-#' @param prn
-#' @param size
-#'
-#' @return
 #' @export
-#'
-#' @examples
 pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
   # start by casting arguments as strings
   if (typeof(stratid) == "language") {
