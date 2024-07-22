@@ -144,34 +144,12 @@ pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
   }
 }
 
-#' Title
-#'
-#' @param frame
-#' @param stratid
-#' @param nsamp
-#' @param prn
-#' @param size
-#'
-#' @return
 #' @export
-#'
-#' @examples
 pps.data.table <- function(frame, stratid, nsamp, prn, size) {
   return(NextMethod() |> data.table::as.data.table())
 }
 
-#' Title
-#'
-#' @param frame
-#' @param stratid
-#' @param nsamp
-#' @param prn
-#' @param size
-#'
-#' @return
 #' @export
-#'
-#' @examples
 pps.tbl_df <- function(frame, stratid, nsamp, prn, size) {
   return(NextMethod() |> tibble::as_tibble())
 }
