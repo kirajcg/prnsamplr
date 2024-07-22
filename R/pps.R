@@ -56,13 +56,13 @@ pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
   }
 
   # nsamp, prn, and size numeric variables
-  if (mode(frame[, nsamp]) != "numeric") {
+  if (!is.numeric(frame[[nsamp]])) {
     stop("sample size variable ", nsamp, " is not numeric")
   }
-  if (mode(frame[, prn]) != "numeric") {
+  if (!is.numeric(frame[[prn]])) {
     stop("PRN variable ", prn, " is not numeric")
   }
-  if (mode(frame[, size]) != "numeric") {
+  if (!is.numeric(frame[[size]])) {
     stop("size variable ", size, " is not numeric")
   }
 
@@ -157,10 +157,7 @@ pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
 #'
 #' @examples
 pps.data.table <- function(frame, stratid, nsamp, prn, size) {
-  return(frame |>
-           as.data.frame() |>
-           pps(stratid, nsamp, prn, size) |>
-           data.table::as.data.table())
+  return(NextMethod() |> data.table::as.data.table())
 }
 
 #' Title
@@ -176,8 +173,5 @@ pps.data.table <- function(frame, stratid, nsamp, prn, size) {
 #'
 #' @examples
 pps.tbl_df <- function(frame, stratid, nsamp, prn, size) {
-  return(frame |>
-           as.data.frame() |>
-           pps(stratid, nsamp, prn, size) |>
-           tibble::as_tibble())
+  return(NextMethod() |> tibble::as_tibble())
 }
