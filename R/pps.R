@@ -17,16 +17,16 @@ pps <- function(frame, stratid, nsamp, prn, size) {
 #' @export
 pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
   # start by casting arguments as strings
-  if (typeof(stratid) == "language") {
+  if (is.language(stratid)) {
     stratid <- rlang::f_name(stratid)
   }
-  if (typeof(nsamp) == "language") {
+  if (is.language(nsamp)) {
     nsamp <- rlang::f_name(nsamp)
   }
-  if (typeof(prn) == "language") {
+  if (is.language(prn)) {
     prn <- rlang::f_name(prn)
   }
-  if (typeof(size) == "language") {
+  if (is.language(size)) {
     size <- rlang::f_name(size)
   }
 

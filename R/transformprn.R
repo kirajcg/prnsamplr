@@ -1,13 +1,22 @@
-#' @param frame
+#' Title
 #'
+#' @param frame
 #' @param prn
 #' @param direction
 #' @param start
 #'
+#' @return
 #' @export
+#'
+#' @examples
 transformprn <- function(frame, prn, direction, start) {
+  UseMethod("transformprn")
+}
+
+#' @export
+transformprn.data.frame <- function(frame, prn, direction, start) {
   # start by casting the prn argument as string
-  if (typeof(prn) == "language") {
+  if (is.language(prn)) {
     prn <- rlang::f_name(prn)
   }
 
@@ -41,4 +50,14 @@ transformprn <- function(frame, prn, direction, start) {
     )
   }
   return(frame)
+}
+
+#' @export
+transformprn.data.table <- function(frame, prn, direction, start) {
+  return(NextMethod() |> data.table::as.data.table())
+}
+
+#' @export
+transformprn.tbl_df <- function(frame, prn, direction, start) {
+  return(NextMethod() |> tibble::as_tibble())
 }

@@ -1,23 +1,28 @@
-#'
+#' Title
 #'
 #' @param frame
-#'
 #' @param stratid
 #' @param nsamp
 #' @param prn
 #'
 #' @return
-#'
 #' @export
+#'
+#' @examples
 srs <- function(frame, stratid, nsamp, prn) {
+  UseMethod("srs")
+}
+
+#' @export
+srs.data.frame <- function(frame, stratid, nsamp, prn) {
   # start by casting each argument as strings
-  if(typeof(stratid) == "language") {
+  if (is.language(stratid)) {
     stratid <- rlang::f_name(stratid)
   }
-  if(typeof(nsamp) == "language") {
+  if (is.language(nsamp)) {
     nsamp <- rlang::f_name(nsamp)
   }
-  if(typeof(prn) == "language") {
+  if (is.language(prn)) {
     prn <- rlang::f_name(prn)
   }
 
@@ -33,10 +38,10 @@ srs <- function(frame, stratid, nsamp, prn) {
   }
 
   # nsamp and prn numeric variables
-  if (mode(frame[, nsamp]) != "numeric") {
+  if (!is.numeric(frame[[nsamp]])) {
     stop("sample size variable ", nsamp, " is not numeric")
   }
-  if (mode(frame[, prn]) != "numeric") {
+  if (!is.numeric(frame[[prn]])) {
     stop("PRN variable ", prn, " is not numeric")
   }
 
@@ -76,4 +81,14 @@ srs <- function(frame, stratid, nsamp, prn) {
     out_frame[, nsamp]
 
   return(out_frame)
+}
+
+#' @export
+srs.data.table <- function(frame, stratid, nsamp, prn) {
+  return(NextMethod() |> data.table::as.data.table())
+}
+
+#' @export
+srs.tbl_df <- function(frame, stratid, nsamp, prn) {
+  return(NextMethod() |> tibble::as_tibble())
 }
