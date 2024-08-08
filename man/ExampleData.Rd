@@ -26,4 +26,7 @@ ExampleData
 \description{
 Artificial dataset to be used with \code{samp} and \code{transformprn}.
 }
+\seealso{
+\link{prnsamplr}, \link{samp}, \link{srs}, \link{pps}, \link{transformprn}
+}
 \keyword{datasets}

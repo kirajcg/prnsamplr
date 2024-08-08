@@ -1,14 +1,37 @@
-#' Title
+#' Permanent random number transformation
 #'
-#' @param frame
-#' @param prn
-#' @param direction
-#' @param start
+#' @description
+#' Transformation of the permanent random numbers used in the sampling
+#' procedure, to control the overlap between samples, and thus control the
+#' sample coordination. The method used is specified in
+#' Lindblom and Teterukovsky (2007).
 #'
-#' @return
+#' @param frame Data frame (or data.table or tibble) containing the elements
+#' to sample from.
+#' @param prn Variable in \code{frame} containing the permanent random numbers.
+#' @param direction Direction for the enumeration. "U" or "R" for upwards,
+#' or equivalently to the right on the real-number line. "D" or "L" for
+#' downwards, or equivalently to the left on the real-number line.
+#' @param start Starting point for the transformation. For SRS this corresponds
+#' to the point at which one wants to start sampling.
+#'
+#' @return A copy of the input data frame with the permanent random numbers
+#' transformed according to specification, along with the numeric variable
+#' \code{prn.old} containing the non-transformed permanent random numbers.
+#'
 #' @export
 #'
-#' @examples
+#' @examples dfOut <- transformprn(frame = ExampleData,
+#'                                 prn = ~rands,
+#'                                 direction = "U",
+#'                                 start = 0.2)
+#' @seealso \link{prnsamplr}, \link{samp}, \link{srs}, \link{pps},
+#' \link{ExampleData}
+#'
+#' @references Lindblom, A. and Teterukovsky, A. (2007). "Coordination of
+#' Stratified Pareto pps Samples and Stratified Simple Random Samples at
+#' Statistics Sweden." In \emph{Papers presented at the ICES-III, June 18-21,
+#' 2007, Montreal, Quebec, Canada.}
 transformprn <- function(frame, prn, direction, start) {
   UseMethod("transformprn")
 }

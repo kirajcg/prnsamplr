@@ -1,14 +1,26 @@
-#' Title
+#' Stratified simple random sampling
 #'
-#' @param frame
-#' @param stratid
-#' @param nsamp
-#' @param prn
+#' @description
+#' Stratified simple random sampling (SRS) using permanent random numbers.
+#' Can also be used for non-stratified SRS using a dummy stratum taking the
+#' same value for each object.
 #'
-#' @return
+#' @param frame Data frame (or data.table or tibble)
+#' containing the elements to sample from.
+#' @param stratid Variable in \code{frame} containing the strata.
+#' @param nsamp Variable in \code{frame} containing the sample sizes.
+#' @param prn Variable in \code{frame} containing the permanent random numbers.
+#'
+#' @return A copy of the input sampling frame together with the boolean variable
+#' \code{sampled}, indicating sample inclusion.
 #' @export
 #'
-#' @examples
+#' @examples dfOut <- srs(frame = ExampleData,
+#'                         nsamp = ~nsample,
+#'                         stratid = ~stratum,
+#'                         prn = ~rands)
+#' @seealso \link{prnsamplr}, \link{samp}, \link{pps}, \link{transformprn},
+#' \link{ExampleData}
 srs <- function(frame, stratid, nsamp, prn) {
   UseMethod("srs")
 }

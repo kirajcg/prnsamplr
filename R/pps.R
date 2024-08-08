@@ -1,15 +1,33 @@
-#' Title
+#' Stratified probability-proportional-to-size sampling
 #'
-#' @param frame
-#' @param stratid
-#' @param nsamp
-#' @param prn
-#' @param size
+#' @description
+#' Stratified probability-proportional-to-size (Pareto PiPS) sampling using
+#' permanent random numbers. Can also be used for non-stratified Pareto PiPS
+#' using a dummy stratum taking the same value for each object.
+#'
+#' @param frame Data frame (or data.table or tibble)
+#' containing the elements to sample from.
+#' @param stratid Variable in \code{frame} containing the strata.
+#' @param nsamp Variable in \code{frame} containing the sample sizes.
+#' @param prn Variable in \code{frame} containing the permanent random numbers.
+#' @param size Variable in \code{frame} containing the size measure.
 #'
 #' @return
+#' A copy of the input sampling frame together with the boolean variable
+#' \code{sampled}, indicating sample inclusion, as well as a numeric variable
+#' \code{lambda} containing the estimated first-order inclusion probabilities
+#' and the numeric variable \deqn{Q = \frac{prn(1 - lambda)}{lambda(1 - prn)}}
+#' that determines which elements are sampled.
+#'
 #' @export
 #'
-#' @examples
+#' @examples dfOut <- pps(frame = ExampleData,
+#'                         nsamp = ~nsample,
+#'                         stratid = ~stratum,
+#'                         prn = ~rands,
+#'                         size = ~sizeM)
+#' @seealso \link{prnsamplr}, \link{samp}, \link{srs}, \link{transformprn},
+#' \link{ExampleData}
 pps <- function(frame, stratid, nsamp, prn, size) {
   UseMethod("pps")
 }

@@ -13,7 +13,7 @@ make_data <- function(nobs, nstrat, seed) {
     )
   }
 
-  data_new[1:stratlen[2] - 1, "stratum"] <- "st00001"
+  data_new[1:strat_len[2] - 1, "stratum"] <- "st00001"
   strat_info <- as.data.frame(table(data_new$stratum))
   colnames(strat_info) <- c("stratum", "npopul")
   strat_info$nsample <- ceiling(runif(nrow(strat_info)) * strat_info$npop)
