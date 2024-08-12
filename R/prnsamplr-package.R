@@ -49,20 +49,23 @@
 #'   frame = ExampleData,
 #'   nsamp = ~nsample,
 #'   stratid = ~stratum,
-#'   prn = ~rands)
+#'   prn = ~rands
+#' )
 #'
 #' dfPPS <- pps(
 #'   frame = ExampleData,
 #'   nsamp = ~nsample,
 #'   stratid = ~stratum,
 #'   prn = ~rands,
-#'   size = ~sizeM)
+#'   size = ~sizeM
+#' )
 #'
 #' dfPRN <- transformprn(
 #'   frame = ExampleData,
 #'   prn = ~rands,
 #'   direction = "U",
-#'   start = 0.2)
+#'   start = 0.2
+#' )
 ## usethis namespace: start
 #' @importFrom stats aggregate setNames
 ## usethis namespace: end

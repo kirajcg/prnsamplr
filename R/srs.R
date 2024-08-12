@@ -15,10 +15,12 @@
 #' \code{sampled}, indicating sample inclusion.
 #' @export
 #'
-#' @examples dfOut <- srs(frame = ExampleData,
-#'                         nsamp = ~nsample,
-#'                         stratid = ~stratum,
-#'                         prn = ~rands)
+#' @examples dfOut <- srs(
+#'   frame = ExampleData,
+#'   nsamp = ~nsample,
+#'   stratid = ~stratum,
+#'   prn = ~rands
+#' )
 #' @seealso \link{prnsamplr}, \link{samp}, \link{pps}, \link{transformprn},
 #' \link{ExampleData}
 srs <- function(frame, stratid, nsamp, prn) {

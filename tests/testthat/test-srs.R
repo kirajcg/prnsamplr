@@ -1,24 +1,26 @@
 test_that("srs samples the right number", {
   srs_frame <- srs(ExampleData, ~stratum, ~nsample, ~rands)
   nsamp_list <- aggregate(srs_frame$nsample,
-                          by = list(stratum = srs_frame$stratum),
-                          FUN = unique)
+    by = list(stratum = srs_frame$stratum),
+    FUN = unique
+  )
   sampled_list <- aggregate(srs_frame$sampled,
-                            by = list(stratum = srs_frame$stratum),
-                            FUN = sum)
+    by = list(stratum = srs_frame$stratum),
+    FUN = sum
+  )
   expect_equal(nsamp_list$x, sampled_list$x)
 })
 
 test_that("error when stratid not found", {
-  expect_error(srs(ExampleData, nsamp=~nsample, prn=~rands))
+  expect_error(srs(ExampleData, nsamp = ~nsample, prn = ~rands))
 })
 
 test_that("error when nsamp not found", {
-  expect_error(srs(ExampleData, stratid=~stratum, prn=~rands))
+  expect_error(srs(ExampleData, stratid = ~stratum, prn = ~rands))
 })
 
 test_that("error when prn not found", {
-  expect_error(srs(ExampleData, stratid=~stratum, nsamp=~nsample))
+  expect_error(srs(ExampleData, stratid = ~stratum, nsamp = ~nsample))
 })
 
 test_that("error when nsamp not numeric", {
@@ -52,11 +54,11 @@ test_that("warning when prn > 1", {
 })
 
 test_that("data.table input gives data.table output", {
-  ExampleTable <- data.table::as.data.table(ExampleData)
-  expect_s3_class(srs(ExampleTable, ~stratum, ~nsample, ~rands), "data.table")
+  example_table <- data.table::as.data.table(ExampleData)
+  expect_s3_class(srs(example_table, ~stratum, ~nsample, ~rands), "data.table")
 })
 
 test_that("tibble input gives tibble output", {
-  ExampleTibble <- tibble::as_tibble(ExampleData)
-  expect_s3_class(srs(ExampleTibble, ~stratum, ~nsample, ~rands), "tbl_df")
+  example_tibble <- tibble::as_tibble(ExampleData)
+  expect_s3_class(srs(example_tibble, ~stratum, ~nsample, ~rands), "tbl_df")
 })

@@ -21,11 +21,13 @@
 #'
 #' @export
 #'
-#' @examples dfOut <- pps(frame = ExampleData,
-#'                         nsamp = ~nsample,
-#'                         stratid = ~stratum,
-#'                         prn = ~rands,
-#'                         size = ~sizeM)
+#' @examples dfOut <- pps(
+#'   frame = ExampleData,
+#'   nsamp = ~nsample,
+#'   stratid = ~stratum,
+#'   prn = ~rands,
+#'   size = ~sizeM
+#' )
 #' @seealso \link{prnsamplr}, \link{samp}, \link{srs}, \link{transformprn},
 #' \link{ExampleData}
 pps <- function(frame, stratid, nsamp, prn, size) {
@@ -102,8 +104,10 @@ pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
   }
 
   # calculate the sum of the size in each stratum
-  sum_frame <- setNames(aggregate(frame[size], frame[stratid], sum),
-                        c(stratid, "sumsize"))
+  sum_frame <- setNames(
+    aggregate(frame[size], frame[stratid], sum),
+    c(stratid, "sumsize")
+  )
   frame <- merge(frame, sum_frame, by = stratid)
   # calculate a preliminary lambda for each item
   frame[["lambda"]] <- frame[[nsamp]] * frame[[size]] / frame[["sumsize"]]
@@ -111,11 +115,14 @@ pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
   # if any lambda >= 1:
   if (any(frame[["lambda"]] >= 1)) {
     # calculate new sample size among units with lambda < 1
-    n_frame <- aggregate(list(ntot = frame["lambda"] >= 1),
-                         frame[stratid], sum)
+    n_frame <- aggregate(
+      list(ntot = frame["lambda"] >= 1),
+      frame[stratid], sum
+    )
     frame[["nnew"]] <- frame[[nsamp]] - merge(frame,
-                                              n_frame,
-                                              by = stratid)[["lambda.y"]]
+      n_frame,
+      by = stratid
+    )[["lambda.y"]]
     # remove the variable with sum of size
     if ("sumsize" %in% colnames(frame)) {
       frame[["sumsize"]] <- NULL

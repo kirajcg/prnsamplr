@@ -21,10 +21,12 @@
 #'
 #' @export
 #'
-#' @examples dfOut <- transformprn(frame = ExampleData,
-#'                                 prn = ~rands,
-#'                                 direction = "U",
-#'                                 start = 0.2)
+#' @examples dfOut <- transformprn(
+#'   frame = ExampleData,
+#'   prn = ~rands,
+#'   direction = "U",
+#'   start = 0.2
+#' )
 #' @seealso \link{prnsamplr}, \link{samp}, \link{srs}, \link{pps},
 #' \link{ExampleData}
 #'

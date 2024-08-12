@@ -21,18 +21,22 @@
 #' @export
 #'
 #' @examples
-#' dfOut <- samp(method = pps,
-#'                frame = ExampleData,
-#'                nsamp = ~nsample,
-#'                stratid = ~stratum,
-#'                prn = ~rands,
-#'                size = ~sizeM)
+#' dfOut <- samp(
+#'   method = pps,
+#'   frame = ExampleData,
+#'   nsamp = ~nsample,
+#'   stratid = ~stratum,
+#'   prn = ~rands,
+#'   size = ~sizeM
+#' )
 #'
-#' dfOut <- samp(method = srs,
-#'                frame = ExampleData,
-#'                nsamp = ~nsample,
-#'                stratid = ~stratum,
-#'                prn = ~rands)
+#' dfOut <- samp(
+#'   method = srs,
+#'   frame = ExampleData,
+#'   nsamp = ~nsample,
+#'   stratid = ~stratum,
+#'   prn = ~rands
+#' )
 #' @seealso \link{prnsamplr}, \link{srs}, \link{pps}, \link{transformprn},
 #' \link{ExampleData}
 samp <- function(method, frame, ...) {

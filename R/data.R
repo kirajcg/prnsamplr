@@ -16,5 +16,6 @@
 #'
 #' @source Ad-hoc simulation in base R.
 #'
-#' @seealso \link{prnsamplr}, \link{samp}, \link{srs}, \link{pps}, \link{transformprn}
+#' @seealso \link{prnsamplr}, \link{samp}, \link{srs}, \link{pps},
+#' \link{transformprn}
 "ExampleData"
