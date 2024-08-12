@@ -36,6 +36,24 @@ test_that("error when size not found", {
   expect_error(pps(ExampleData, stratid=~stratum, nsamp=~nsample, prn=~rands))
 })
 
+test_that("error when nsamp not numeric", {
+  data_copy <- ExampleData
+  data_copy[1, "nsample"] <- "foo"
+  expect_error(pps(data_copy, ~stratum, ~nsample, ~rands, ~sizeM))
+})
+
+test_that("error when prn not numeric", {
+  data_copy <- ExampleData
+  data_copy[1, "rands"] <- "foo"
+  expect_error(pps(data_copy, ~stratum, ~nsample, ~rands, ~sizeM))
+})
+
+test_that("error when size not numeric", {
+  data_copy <- ExampleData
+  data_copy[1, "sizeM"] <- "foo"
+  expect_error(pps(data_copy, ~stratum, ~nsample, ~rands, ~sizeM))
+})
+
 test_that("warning when too many nsamp in one stratid", {
   data_copy <- ExampleData
   data_copy[1, "nsample"] <- data_copy[1, "nsample"] + 1

@@ -21,6 +21,18 @@ test_that("error when prn not found", {
   expect_error(srs(ExampleData, stratid=~stratum, nsamp=~nsample))
 })
 
+test_that("error when nsamp not numeric", {
+  data_copy <- ExampleData
+  data_copy[1, "nsample"] <- "foo"
+  expect_error(srs(data_copy, ~stratum, ~nsample, ~rands))
+})
+
+test_that("error when prn not numeric", {
+  data_copy <- ExampleData
+  data_copy[1, "rands"] <- "foo"
+  expect_error(srs(data_copy, ~stratum, ~nsample, ~rands))
+})
+
 test_that("warning when too many nsamp in one stratid", {
   data_copy <- ExampleData
   data_copy[1, "nsample"] <- data_copy[1, "nsample"] + 1
