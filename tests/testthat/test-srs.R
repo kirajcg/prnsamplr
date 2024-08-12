@@ -27,11 +27,22 @@ test_that("warning when too many nsamp in one stratid", {
   expect_warning(srs(data_copy, ~stratum, ~nsample, ~rands))
 })
 
+test_that("warning when prn < 0", {
+  data_copy <- ExampleData
+  data_copy[1, "rands"] <- -0.1
+  expect_warning(srs(data_copy, ~stratum, ~nsample, ~rands))
+})
+
+test_that("warning when prn > 1", {
+  data_copy <- ExampleData
+  data_copy[1, "rands"] <- 1.1
+  expect_warning(srs(data_copy, ~stratum, ~nsample, ~rands))
+})
+
 test_that("data.table input gives data.table output", {
   ExampleTable <- data.table::as.data.table(ExampleData)
   expect_s3_class(srs(ExampleTable, ~stratum, ~nsample, ~rands), "data.table")
 })
-
 
 test_that("tibble input gives tibble output", {
   ExampleTibble <- tibble::as_tibble(ExampleData)
