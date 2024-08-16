@@ -6,13 +6,12 @@ test_that("transforming up from 0 leaves the order unchanged", {
   expect_equal(data_copy_ordered$id, data_transformed_ordered$id)
 })
 
-test_that("transforming down from 1 inverts the order unchanged", {
+test_that("transforming down from 1 inverts the order", {
   data_copy <- ExampleData
   data_transformed <- transformprn(data_copy, ~rands, "D", 1.0)
   data_copy_ordered <- data_copy[order(data_copy$rands), ]
   data_transformed_ordered <- data_transformed[order(data_transformed$rands,
-    decreasing = TRUE
-  ), ]
+                                                     decreasing = TRUE), ]
   expect_equal(data_copy_ordered$id, data_transformed_ordered$id)
 })
 

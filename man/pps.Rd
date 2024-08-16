@@ -31,11 +31,13 @@ permanent random numbers. Can also be used for non-stratified Pareto PiPS
 using a dummy stratum taking the same value for each object.
 }
 \examples{
-dfOut <- pps(frame = ExampleData,
-                        nsamp = ~nsample,
-                        stratid = ~stratum,
-                        prn = ~rands,
-                        size = ~sizeM)
+dfOut <- pps(
+  frame = ExampleData,
+  nsamp = ~nsample,
+  stratid = ~stratum,
+  prn = ~rands,
+  size = ~sizeM
+)
 }
 \seealso{
 \link{prnsamplr}, \link{samp}, \link{srs}, \link{transformprn},

@@ -31,10 +31,12 @@ sample coordination. The method used is specified in
 Lindblom and Teterukovsky (2007).
 }
 \examples{
-dfOut <- transformprn(frame = ExampleData,
-                                prn = ~rands,
-                                direction = "U",
-                                start = 0.2)
+dfOut <- transformprn(
+  frame = ExampleData,
+  prn = ~rands,
+  direction = "U",
+  start = 0.2
+)
 }
 \references{
 Lindblom, A. and Teterukovsky, A. (2007). "Coordination of

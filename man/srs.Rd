@@ -26,10 +26,12 @@ Can also be used for non-stratified SRS using a dummy stratum taking the
 same value for each object.
 }
 \examples{
-dfOut <- srs(frame = ExampleData,
-                        nsamp = ~nsample,
-                        stratid = ~stratum,
-                        prn = ~rands)
+dfOut <- srs(
+  frame = ExampleData,
+  nsamp = ~nsample,
+  stratid = ~stratum,
+  prn = ~rands
+)
 }
 \seealso{
 \link{prnsamplr}, \link{samp}, \link{pps}, \link{transformprn},

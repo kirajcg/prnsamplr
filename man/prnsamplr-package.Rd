@@ -44,20 +44,23 @@ dfSRS <- srs(
   frame = ExampleData,
   nsamp = ~nsample,
   stratid = ~stratum,
-  prn = ~rands)
+  prn = ~rands
+)
 
 dfPPS <- pps(
   frame = ExampleData,
   nsamp = ~nsample,
   stratid = ~stratum,
   prn = ~rands,
-  size = ~sizeM)
+  size = ~sizeM
+)
 
 dfPRN <- transformprn(
   frame = ExampleData,
   prn = ~rands,
   direction = "U",
-  start = 0.2)
+  start = 0.2
+)
 }
 \references{
 Lindblom, A. (2014). "On Precision in Estimates of Change over

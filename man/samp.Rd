@@ -26,18 +26,22 @@ numbers. Can also be used for non-stratified sampling using a dummy stratum
 taking the same value for each object.
 }
 \examples{
-dfOut <- samp(method = pps,
-               frame = ExampleData,
-               nsamp = ~nsample,
-               stratid = ~stratum,
-               prn = ~rands,
-               size = ~sizeM)
+dfOut <- samp(
+  method = pps,
+  frame = ExampleData,
+  nsamp = ~nsample,
+  stratid = ~stratum,
+  prn = ~rands,
+  size = ~sizeM
+)
 
-dfOut <- samp(method = srs,
-               frame = ExampleData,
-               nsamp = ~nsample,
-               stratid = ~stratum,
-               prn = ~rands)
+dfOut <- samp(
+  method = srs,
+  frame = ExampleData,
+  nsamp = ~nsample,
+  stratid = ~stratum,
+  prn = ~rands
+)
 }
 \seealso{
 \link{prnsamplr}, \link{srs}, \link{pps}, \link{transformprn},

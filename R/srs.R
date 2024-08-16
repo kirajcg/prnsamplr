@@ -91,7 +91,8 @@ srs.data.frame <- function(frame, stratid, nsamp, prn) {
   order_frame <- unname(frame[, c(stratid, prn)])
   out_frame <- frame[do.call(order, order_frame), ]
   # the nsamp first objects in each stratum are marked for sampling
-  out_frame$sampled <- sequence(rle(as.character(frame[, stratid]))$lengths) <=
+  out_frame$sampled <-
+    sequence(rle(as.character(frame[, stratid]))$lengths) <=
     out_frame[, nsamp]
 
   return(out_frame)
