@@ -152,7 +152,7 @@ pps.data.frame <- function(frame, stratid, nsamp, prn, size) {
     # the nsamp with lowest Q for each stratum are marked for sampling
     out_frame$sampled <-
       sequence(rle(as.character(frame[, stratid]))$lengths) <=
-      out_frame[nsamp]
+        out_frame[nsamp]
     # remove the sum of the sizes and return the frame
     out_frame[["sumsize"]] <- NULL
     return(out_frame)

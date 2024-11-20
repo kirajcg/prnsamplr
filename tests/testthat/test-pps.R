@@ -27,17 +27,19 @@ test_that("pps calculates lambda correctly", {
 # actually it needs to be close to it, not necessarily equal (hence tolerance)
 test_that("pps calculates the inverse of lambda correctly as well", {
   pps_frame <- pps(ExampleData, ~stratum, ~nsample, ~rands, ~sizeM)
-  npop_list <- aggregate(pps_frame$npopul,
-                         by = list(stratum = pps_frame$stratum),
-                         FUN = unique
+  npop_list <- aggregate(
+    pps_frame$npopul,
+    by = list(stratum = pps_frame$stratum),
+    FUN = unique
   )
-  pps_sample <- pps_frame[pps_frame$sampled,]
-  pps_sample$weight <- 1/pps_sample$lambda
-  weight_list <- aggregate(pps_sample$weight,
-                           by = list(stratum = pps_sample$stratum),
-                           FUN = sum
+  pps_sample <- pps_frame[pps_frame$sampled, ]
+  pps_sample$weight <- 1 / pps_sample$lambda
+  weight_list <- aggregate(
+    pps_sample$weight,
+    by = list(stratum = pps_sample$stratum),
+    FUN = sum
   )
-  expect_equal(weight_list$x, npop_list$x, tolerance=0.1)
+  expect_equal(weight_list$x, npop_list$x, tolerance = 0.1)
 })
 
 test_that("error when stratid not found", {
@@ -90,7 +92,7 @@ test_that("warning when too many nsamp in one stratid", {
   expect_match(
     w[1],
     "stratum with names st00001 have more than one corresponding value of nsample"
-    )
+  )
 })
 
 test_that("warning when prn < 0", {

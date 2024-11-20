@@ -93,7 +93,7 @@ srs.data.frame <- function(frame, stratid, nsamp, prn) {
   # the nsamp first objects in each stratum are marked for sampling
   out_frame$sampled <-
     sequence(rle(as.character(frame[, stratid]))$lengths) <=
-    out_frame[, nsamp]
+      out_frame[, nsamp]
 
   return(out_frame)
 }
