@@ -8,7 +8,7 @@ test_that("srs samples the right number", {
     by = list(stratum = srs_frame$stratum),
     FUN = sum
   )
-  expect_equal(nsamp_list$x, sampled_list$x)
+  expect_equal(sampled_list$x, nsamp_list$x)
 })
 
 test_that("error when stratid not found", {
