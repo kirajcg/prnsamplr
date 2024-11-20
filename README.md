@@ -1,4 +1,4 @@
-# prnsamplr
+# prnsamplr[![Mentioned in Awesome Official Statistics ](https://awesome.re/mentioned-badge.svg)](http://www.awesomeofficialstatistics.org)
 
 The goal of prnsamplr is to coordinate survey samples with the help of permanent random numbers. 
 
@@ -31,5 +31,3 @@ In version 0.2.1 an error in the documentation was fixed, and some code in pps w
 In version 0.2.0 a compatibility issue with the latest R was fixed. 
 
 In version 0.1.1 an issue was fixed that disallowed generic function parameters. 
-
-[![Mentioned in Awesome Official Statistics ](https://awesome.re/mentioned-badge.svg)](http://www.awesomeofficialstatistics.org)
