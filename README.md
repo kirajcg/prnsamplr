@@ -22,6 +22,8 @@ SampledData <- samp(method=pps, df=ExampleData, nsamp=~nsample, stratid=~stratum
 
 ## News
 
+In version 1.1.0 a functionality breaking bug in srs() was fixed.
+
 In version 1.0.0 was implemented a major overhaul of how the package is organized, as well as a change in how functions are called. S3 methods were also implemented.
 
 In version 0.3.0 the documentation was better developed and informative error messages were added.
