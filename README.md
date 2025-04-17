@@ -1,4 +1,4 @@
-# prnsamplr <img src="man/figures/logo.png" align="right" height="138" alt="" /> [![Mentioned in Awesome Official Statistics ](https://awesome.re/mentioned-badge.svg)](http://www.awesomeofficialstatistics.org)
+# prnsamplr <img src="man/figures/logo.png" align="right" height="138" alt="" /> [![Mentioned in Awesome Official Statistics ](https://awesome.re/mentioned-badge.svg)](https://github.com/SNStatComp/awesome-official-statistics-software/)
 
 The goal of prnsamplr is to coordinate survey samples with the help of permanent random numbers. 
 
